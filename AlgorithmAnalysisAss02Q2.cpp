@@ -74,7 +74,7 @@ int PermutateThroughKnapSack(std::vector<int> _values,std::vector<int> _weights,
 
 int main() {
 	std::vector<int>	values	{ 1, 4, 8, 5 },
-						weights{ 3, 3, 5, 6 };
+						weights { 3, 3, 5, 6 };
 	int capacity{ 7 };
 	
 	int maximum = PermutateThroughKnapSack(values, weights, capacity);
