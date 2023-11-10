@@ -33,6 +33,10 @@ int PermutateThroughKnapSack(std::vector<int> _values,std::vector<int> _weights,
 	int remainingWeight;
 	int sum = 0;
 
+	// Output
+	std::cout << "Knapsack Capacity: " << _maxCapacity << std::endl;
+	
+	// Algorithm to systematically explore combinations
 	do {
 		// Set initial values
 		sum = 0;
@@ -62,7 +66,7 @@ int PermutateThroughKnapSack(std::vector<int> _values,std::vector<int> _weights,
 
 			std::cout << "Permutation Set{ Profit of " << sum << " : ";
 			for (auto item : possibleList) {
-				std::cout << "[" << item.first << "|" << item.second << "] ";
+				std::cout << "[V:" << item.first << "|W:" << item.second << "] ";
 			}
 			std::cout << "}" << std::endl;
 		}
