@@ -1,78 +1,39 @@
 #include <iostream>
 #include <vector>
 #include <map>
-#include <set>
-#include <algorithm>
 
-using namespace std;
+// Based on https://www.geeksforgeeks.org/0-1-knapsack-problem-to-print-all-possible-solutions/
 
-int knapSack(int C, vector<int> val,vector<int> wt, int n)
-{
-	// Mapping weights with Profits
-	map<int, int> umap;
+int knapSack(std::vector<int> _values,std::vector<int> _weights, int _maxCapacity) {
+	if (_values.size() != _weights.size())
+		return 0;
 
-	set<vector<pair<int, int>>> set_sol;
+	// Map to store weights with profits of each item
+	std::map<int, std::pair<int, int>> uMap;
+
 	// Making Pairs and inserting
 	// into the map
-	for (int i = 0; i < n; i++) {
-		umap.insert({ wt[i], val[i] });
-	}
+	for (int i{ 0 }; i < _values.size(); ++i)
+		uMap.emplace(i, std::pair<int, int>{_values[i], _weights[i]});
 
+	//std::set<std::vector<std::pair<int, int>>> set_sol;
 	int result = INT_MIN;
 	int remaining_weight;
 	int sum = 0;
 
-	// Loop to iterate over all the 
-	// possible permutations of array
-	do {
-		sum = 0;
-
-		// Initially bag will be empty
-		remaining_weight = C;
-		vector<pair<int, int>> possible;
-
-		// Loop to fill up the bag 
-		// until there is no weight
-		// such which is less than
-		// remaining weight of the
-		// 0-1 knapSack
-		for (int i = 0; i < n; i++) {
-			if (wt[i] <= remaining_weight) {
-
-				remaining_weight -= wt[i];
-				auto itr = umap.find(wt[i]);
-				sum += (itr->second);
-				possible.push_back({ itr->first,
-					 itr->second
-					});
-			}
-		}
-		sort(possible.begin(), possible.end());
-		if (sum > result) {
-			result = sum;
-		}
-		if (set_sol.find(possible) ==
-			set_sol.end()) {
-			for (auto sol : possible) {
-				cout << sol.first << ": "
-					<< sol.second << ", ";
-			}
-			cout << endl;
-			set_sol.insert(possible);
-		}
-
-	} while (
-		next_permutation(wt.begin(),
-			wt.end()));
+	
 	return result;
 }
 
 int main()
 {
-	std::vector<int>	V{ 1, 4, 8, 5 },
-						W{ 3, 3, 5, 6 };
-	int C = 7;
-	knapSack(C, V, W, V.size());
-
+	std::vector<int>	values	{ 1, 4, 8, 5 },
+						weights{ 3, 3, 5, 6 };
+	int capacity{ 7 };
+	
+	int maximum = knapSack(values, weights, capacity);
+	std::cout << "Maximum Profit = ";
+	std::cout << maximum;
+	
 	return 0;
 }
