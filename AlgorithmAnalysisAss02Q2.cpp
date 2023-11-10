@@ -60,9 +60,9 @@ int PermutateThroughKnapSack(std::vector<int> _values,std::vector<int> _weights,
 			// Add to it and print out this permutation
 			solutionSet.insert(possibleList);
 
-			std::cout << "Permutation Set{ " << sum << " : ";
+			std::cout << "Permutation Set{ Profit of " << sum << " : ";
 			for (auto item : possibleList) {
-				std::cout << "[" << item.first << "|" << item.second << "]" << std::endl;
+				std::cout << "[" << item.first << "|" << item.second << "] ";
 			}
 			std::cout << "}" << std::endl;
 		}
