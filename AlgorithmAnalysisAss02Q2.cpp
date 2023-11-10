@@ -5,6 +5,7 @@
 // Based on https://www.geeksforgeeks.org/0-1-knapsack-problem-to-print-all-possible-solutions/
 
 int knapSack(std::vector<int> _values,std::vector<int> _weights, int _maxCapacity) {
+	// Unequal number of values given; Unable to run algorithm
 	if (_values.size() != _weights.size())
 		return 0;
 
