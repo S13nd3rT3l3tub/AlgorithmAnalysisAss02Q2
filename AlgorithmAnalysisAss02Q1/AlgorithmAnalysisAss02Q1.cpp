@@ -116,9 +116,78 @@ float closest(Point p[], int n)
 	return closestUtil(p, n);
 }
 
+void Printer(Point* pt, int n)
+{
+
+	for (int i = 0; i < n; ++i)
+		std::cout << "Point " << i + 1 << ": (" << pt[i].x << ", " << pt[i].y << ")" << std::endl;
+
+	std::cout << "\nThe smallest distance for " << n << " points is " << closest(pt, n) << ".\n";
+}
+
 int main() {
-	Point p[] = { {2,3}, {12,30}, {40,50}, {5,1}, {12,10}, {3,4} };
+
+	
+	// 4 points
+	Point p[] = { {5, 8}, {10, 25}, {18, 43}, {16, 17} };
 	int n = sizeof(p) / sizeof(p[0]);
-	std::cout << "The smallest distance is " << closest(p, n) << std::endl;
+	std::cout << "===========================================" << std::endl;
+	std::cout << "=               TEST CASE 1               =" << std::endl;
+	std::cout << "===========================================" << std::endl;
+	
+	Printer(p, n);
+
+	// 6 points
+	Point q[] = { {2, 3}, {12, 30}, {40, 50}, {5, 1}, {12, 10}, {3, 4} };
+	n = sizeof(q) / sizeof(q[0]);
+
+	std::cout << "===========================================" << std::endl;
+	std::cout << "=               TEST CASE 2               =" << std::endl;
+	std::cout << "===========================================" << std::endl;
+
+	Printer(q, n);
+
+	// 8 points
+	Point r[] = { {51, 67}, {14, 90}, {38, 45}, {23, 44}, {1, 2}, {98, 65}, {10, 12}, {14, 16} };
+	n = sizeof(r) / sizeof(r[0]);
+
+	std::cout << "===========================================" << std::endl;
+	std::cout << "=               TEST CASE 3               =" << std::endl;
+	std::cout << "===========================================" << std::endl;
+
+	Printer(r, n);
+
 	return 0;
 }
+
+/*
+===========================================
+EXPLANATION
+===========================================
+
+1. qsort(p, n, sizeof(Point), compareX)
+
+Quicksort has a time complexity of O(nlogn).
+This contributes O(nlogn) to the overall time complexity.
+
+2. closestUtil(Point p[], int n)
+
+closestUtil is a function that recursively divides the set
+of points into halves. In each recursive call, it handles
+a subproblem that is half the size, which is n / 2.
+The recursion continues until the base case is reached
+(in which the number of points is <= 3).
+
+The total number of recursive calls is logarithmic with
+respect to the input size, thus the time complexity
+is O(logn).
+
+The algorithm combines the solutions and spends a total
+time of O(n) at each level (because the algorithm combines
+the solutions in linear time).
+
+Therefore, the dominant factor in the time complexity
+is the sorting step, which is why the overall time
+complexity is O(nlogn).
+
+*/
