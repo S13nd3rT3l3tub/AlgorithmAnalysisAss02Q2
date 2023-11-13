@@ -4,26 +4,21 @@
 #include <set>
 #include <algorithm>
 
-// Based on https://www.geeksforgeeks.org/0-1-knapsack-problem-to-print-all-possible-solutions/
-
 struct CompareMemberWeightValue {
 	bool operator()(const std::pair<int, int>& _a, const std::pair<int, int>& _b) const {
 		return _a.second < _b.second;
 	}
 };
 
-int PermutateThroughKnapSack(std::vector<int> _values,std::vector<int> _weights, int _maxCapacity) {
+int KnapsackExploreSolutions(std::vector<int> _values,std::vector<int> _weights, int _maxCapacity) {
 	// Unequal number of values given; Unable to run algorithm
 	if (_values.size() != _weights.size())
 		return 0;
 
 	// Map to store weights with profits of each item
-	//std::map<int, std::pair<int, int>> uMap;
 	std::vector<std::pair<int, int>> itemList{};
 
 	// Create pair containing value and weight of item and insert into container
-	//for (int i{ 0 }; i < _values.size(); ++i)
-	//	uMap.emplace(i, std::pair<int, int>{_values[i], _weights[i]});
 	for (int i{ 0 }; i < _values.size(); ++i)
 		itemList.emplace_back(std::pair<int, int>{_values[i], _weights[i]});
 
@@ -73,17 +68,16 @@ int PermutateThroughKnapSack(std::vector<int> _values,std::vector<int> _weights,
 
 	} while (std::next_permutation(itemList.begin(), itemList.end(), CompareMemberWeightValue()));
 
+	std::cout << "Maximum Profit = " << result << std::endl;
 	return result;
 }
 
 int main() {
-	std::vector<int>	values	{ 1, 4, 8, 5 },
-						weights { 3, 3, 5, 6 };
-	int capacity{ 7 };
+	std::vector<int>	values	{ 1, 1, 4, 8, 5 },
+						weights { 1, 3, 3, 5, 6 };
+	int capacity{ 9 };
 	
-	int maximum = PermutateThroughKnapSack(values, weights, capacity);
-	std::cout << "Maximum Profit = ";
-	std::cout << maximum;
+	KnapsackExploreSolutions(values, weights, capacity);
 	
 	return 0;
 }
