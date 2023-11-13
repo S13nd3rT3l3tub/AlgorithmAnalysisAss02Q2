@@ -73,9 +73,9 @@ int KnapsackExploreSolutions(std::vector<int> _values,std::vector<int> _weights,
 }
 
 int main() {
-	std::vector<int>	values	{ 1, 1, 4, 8, 5 },
-						weights { 1, 3, 3, 5, 6 };
-	int capacity{ 9 };
+	std::vector<int>	values	{ 1, 4, 8, 5 },
+						weights { 3, 3, 5, 6 };
+	int capacity{ 7 };
 	
 	KnapsackExploreSolutions(values, weights, capacity);
 	
