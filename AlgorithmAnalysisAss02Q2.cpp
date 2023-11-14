@@ -59,7 +59,7 @@ int KnapsackExploreSolutions(std::vector<int> _values,std::vector<int> _weights,
 			// Add to it and print out this permutation
 			solutionSet.insert(possibleList);
 
-			std::cout << "Permutation Set{ Profit of " << sum << " : ";
+			std::cout << "Combination Set{ Profit of " << sum << " : ";
 			for (auto item : possibleList) {
 				std::cout << "[V:" << item.first << "|W:" << item.second << "] ";
 			}
